@@ -3,8 +3,10 @@ import MongoClient from 'mongodb';
 
 const app = express();
 const port = 4000;
-const url = "mongodb+srv://admin:admin123@cluster0-hcing.mongodb.net/test?retryWrites=true&w=majority";
-const mongoDbOptions = {
+const mongoUsername = 'admin';
+const mongoPwd = 'admin123'
+const mongoUrl = `mongodb+srv://${mongoUsername}:${mongoPwd}@cluster0-hcing.mongodb.net/test?retryWrites=true&w=majority`;
+const mongoOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 };
@@ -12,7 +14,7 @@ const mongoDbOptions = {
 let client;
 let db;
 
-MongoClient.connect(url, mongoDbOptions)
+MongoClient.connect(mongoUrl, mongoOptions)
     .then((connection) => {
         client = connection;
         db = client.db("learning");
